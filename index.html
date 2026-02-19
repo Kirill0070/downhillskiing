@@ -3,1677 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кирилл - Горнолыжный спорт</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta name="description" content="Создание профессиональных сайтов для бизнеса за 3 дня. От 3000₽. Портфолио, контакты, онлайн-заявка.">
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap');
-        * { font-family: 'Montserrat', sans-serif; }
-        .snow-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-        }
-        .glass {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .page { display: none; }
-        .page.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .medal-gold { background: linear-gradient(135deg, #ffd700, #ffec8b); }
-        .medal-silver { background: linear-gradient(135deg, #c0c0c0, #e8e8e8); }
-        .medal-bronze { background: linear-gradient(135deg, #cd7f32, #daa06d); }
-        .nav-link.active { background: rgba(255,255,255,0.3); }
-        .stat-card:hover { transform: scale(1.05); }
-        .hero-section {
-            background: url('https://images.unsplash.com/photo-1551524559-8af4e6624178?w=1920') center/cover;
-        }
-    </style>
+    
+    <title>WebStart Studio — Сайты для бизнеса за 3 дня</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="min-h-screen snow-bg text-white">
-    <!-- Навигация -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-skiing text-2xl"></i>
-                    <span class="font-bold text-xl">КИРИЛЛ</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center gap-1">
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-white/20 transition" data-page="home">
-                        <i class="fas fa-home mr-2"></i>Главная
-                    </a>
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-white/20 transition" data-page="achievements">
-                        <i class="fas fa-trophy mr-2"></i>Достижения
-                    </a>
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-white/20 transition" data-page="training">
-                        <i class="fas fa-calendar mr-2"></i>Тренировки
-                    </a>
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-white/20 transition" data-page="gallery">
-                        <i class="fas fa-images mr-2"></i>Галерея
-                    </a>
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-white/20 transition" data-page="partners">
-                        <i class="fas fa-handshake mr-2"></i>Партнёры
-                    </a>
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-white/20 transition" data-page="stats">
-                        <i class="fas fa-chart-line mr-2"></i>Статистика
-                    </a>
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-white/20 transition" data-page="contacts">
-                        <i class="fas fa-envelope mr-2"></i>Контакты
-                    </a>
-                    <a href="#" class="nav-link px-4 py-2 rounded-lg bg-yellow-500/80 hover:bg-yellow-500 transition ml-2" data-page="admin">
-                        <i class="fas fa-cog mr-2"></i>Админ
-                    </a>
-                </div>
+<body>
+    <!-- Прелоадер -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-circle"></div>
+    </div>
 
-                <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="md:hidden p-2">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden glass border-t border-white/20">
-            <div class="px-4 py-3 space-y-2">
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-white/20" data-page="home">
-                    <i class="fas fa-home mr-2"></i>Главная
-                </a>
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-white/20" data-page="achievements">
-                    <i class="fas fa-trophy mr-2"></i>Достижения
-                </a>
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-white/20" data-page="training">
-                    <i class="fas fa-calendar mr-2"></i>Тренировки
-                </a>
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-white/20" data-page="gallery">
-                    <i class="fas fa-images mr-2"></i>Галерея
-                </a>
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-white/20" data-page="partners">
-                    <i class="fas fa-handshake mr-2"></i>Партнёры
-                </a>
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-white/20" data-page="stats">
-                    <i class="fas fa-chart-line mr-2"></i>Статистика
-                </a>
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg hover:bg-white/20" data-page="contacts">
-                    <i class="fas fa-envelope mr-2"></i>Контакты
-                </a>
-                <a href="#" class="nav-link block px-4 py-2 rounded-lg bg-yellow-500/80" data-page="admin">
-                    <i class="fas fa-cog mr-2"></i>Админ панель
-                </a>
-            </div>
+    <!-- Навигация -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>WebStart</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#services" class="nav-link">Услуги</a></li>
+                <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
+                <li><a href="#prices" class="nav-link">Цены</a></li>
+                <li><a href="#reviews" class="nav-link">Отзывы</a></li>
+                <li><a href="#contacts" class="nav-link">Контакты</a></li>
+                <li><a href="#order" class="nav-link cta-button">Заказать</a></li>
+            </ul>
+            
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <main class="pt-16">
-        <!-- ==================== ГЛАВНАЯ СТРАНИЦА ==================== -->
-        <div id="page-home" class="page active">
-            <section class="hero-section min-h-screen flex items-center relative">
-                <div class="absolute inset-0 bg-black/50"></div>
-                <div class="relative z-10 max-w-7xl mx-auto px-4 py-20">
-                    <div class="grid md:grid-cols-2 gap-10 items-center">
-                        <div>
-                            <p class="text-yellow-400 font-semibold mb-2">⛷️ Горнолыжный спорт</p>
-                            <h1 class="text-5xl md:text-7xl font-black mb-4">КИРИЛЛ</h1>
-                            <p class="text-2xl text-blue-200 mb-6">15 лет | Юниор | Слалом & Гигант</p>
-                            <p class="text-lg text-gray-200 mb-8 max-w-lg">
-                                Молодой и перспективный горнолыжник, покоряющий вершины и стремящийся к олимпийским высотам. 
-                                Специализация: слалом и гигантский слалом.
-                            </p>
-                            <div class="flex flex-wrap gap-4">
-                                <button onclick="showPage('achievements')" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-8 py-3 rounded-full transition transform hover:scale-105">
-                                    <i class="fas fa-trophy mr-2"></i>Мои достижения
-                                </button>
-                                <button onclick="showPage('contacts')" class="glass px-8 py-3 rounded-full hover:bg-white/30 transition">
-                                    <i class="fas fa-envelope mr-2"></i>Связаться
-                                </button>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-purple-600 p-2">
-                                <div class="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-8xl">
-                                    ⛷️
-                                </div>
-                            </div>
-                        </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Профессиональные сайты</span>
+                    <span class="hero-subtitle">за 3 дня</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Создам лендинг, визитку или страницу для продаж с адаптивным дизайном, 
+                    интеграцией оплаты и чат-ботом. Без предоплаты — первый макет бесплатно.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">1+</span>
+                        <span class="stat-label">выполненных проектов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3 дня</span>
+                        <span class="stat-label">средний срок</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3000₽</span>
+                        <span class="stat-label">от</span>
                     </div>
                 </div>
-            </section>
-
-            <!-- Быстрая статистика -->
-            <section class="py-16 px-4">
-                <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="glass rounded-2xl p-6 text-center stat-card transition cursor-pointer">
-                        <div class="text-4xl font-black text-yellow-400" id="homeStats-years">7</div>
-                        <div class="text-gray-200">Лет в спорте</div>
-                    </div>
-                    <div class="glass rounded-2xl p-6 text-center stat-card transition cursor-pointer">
-                        <div class="text-4xl font-black text-yellow-400" id="homeStats-medals">15</div>
-                        <div class="text-gray-200">Медалей</div>
-                    </div>
-                    <div class="glass rounded-2xl p-6 text-center stat-card transition cursor-pointer">
-                        <div class="text-4xl font-black text-yellow-400" id="homeStats-competitions">28</div>
-                        <div class="text-gray-200">Соревнований</div>
-                    </div>
-                    <div class="glass rounded-2xl p-6 text-center stat-card transition cursor-pointer">
-                        <div class="text-4xl font-black text-yellow-400" id="homeStats-rank">КМС</div>
-                        <div class="text-gray-200">Разряд</div>
-                    </div>
+                
+                <div class="hero-actions">
+                    <a href="#order" class="btn btn-primary btn-glow">
+                        <i class="fas fa-rocket"></i>
+                        <span>Заказать сайт</span>
+                    </a>
+                    <a href="#portfolio" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        <span>Смотреть работы</span>
+                    </a>
                 </div>
-            </section>
-
-            <!-- О спортсмене -->
-            <section class="py-16 px-4 bg-black/20">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-3xl font-bold text-center mb-10">
-                        <i class="fas fa-user mr-3"></i>Обо мне
-                    </h2>
-                    <div class="glass rounded-2xl p-8">
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="text-xl font-bold mb-4 text-yellow-400">Личная информация</h3>
-                                <ul class="space-y-3">
-                                    <li><i class="fas fa-birthday-cake w-6 text-blue-300"></i> Возраст: <span id="info-age">15 лет</span></li>
-                                    <li><i class="fas fa-map-marker-alt w-6 text-blue-300"></i> Город: <span id="info-city">Москва</span></li>
-                                    <li><i class="fas fa-school w-6 text-blue-300"></i> Школа: <span id="info-school">СДЮСШОР №1</span></li>
-                                    <li><i class="fas fa-user-tie w-6 text-blue-300"></i> Тренер: <span id="info-coach">Иванов И.И.</span></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-4 text-yellow-400">Спортивные данные</h3>
-                                <ul class="space-y-3">
-                                    <li><i class="fas fa-medal w-6 text-blue-300"></i> Разряд: <span id="info-rank">КМС</span></li>
-                                    <li><i class="fas fa-skiing w-6 text-blue-300"></i> Дисциплины: Слалом, Гигант</li>
-                                    <li><i class="fas fa-clock w-6 text-blue-300"></i> Стаж: <span id="info-experience">7 лет</span></li>
-                                    <li><i class="fas fa-mountain w-6 text-blue-300"></i> Любимая трасса: Красная Поляна</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== ДОСТИЖЕНИЯ ==================== -->
-        <div id="page-achievements" class="page">
-            <section class="min-h-screen py-20 px-4">
-                <div class="max-w-6xl mx-auto">
-                    <h1 class="text-4xl font-black text-center mb-4">
-                        <i class="fas fa-trophy text-yellow-400 mr-3"></i>МОИ ДОСТИЖЕНИЯ
-                    </h1>
-                    <p class="text-center text-gray-200 mb-10">Медали и награды за спортивную карьеру</p>
-
-                    <!-- Счётчик медалей -->
-                    <div class="grid grid-cols-3 gap-4 max-w-lg mx-auto mb-12">
-                        <div class="medal-gold rounded-xl p-4 text-center text-black">
-                            <div class="text-3xl font-black" id="goldCount">5</div>
-                            <div class="text-sm font-semibold">Золото</div>
-                        </div>
-                        <div class="medal-silver rounded-xl p-4 text-center text-black">
-                            <div class="text-3xl font-black" id="silverCount">6</div>
-                            <div class="text-sm font-semibold">Серебро</div>
-                        </div>
-                        <div class="medal-bronze rounded-xl p-4 text-center text-black">
-                            <div class="text-3xl font-black" id="bronzeCount">4</div>
-                            <div class="text-sm font-semibold">Бронза</div>
-                        </div>
-                    </div>
-
-                    <!-- Список достижений -->
-                    <div id="achievementsList" class="space-y-4">
-                        <!-- Заполняется через JS -->
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== ТРЕНИРОВКИ ==================== -->
-        <div id="page-training" class="page">
-            <section class="min-h-screen py-20 px-4">
-                <div class="max-w-6xl mx-auto">
-                    <h1 class="text-4xl font-black text-center mb-4">
-                        <i class="fas fa-calendar-alt text-yellow-400 mr-3"></i>РАСПИСАНИЕ ТРЕНИРОВОК
-                    </h1>
-                    <p class="text-center text-gray-200 mb-10">Мой тренировочный план на неделю</p>
-
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="trainingSchedule">
-                        <!-- Заполняется через JS -->
-                    </div>
-
-                    <!-- Ближайшие соревнования -->
-                    <div class="mt-16">
-                        <h2 class="text-2xl font-bold mb-6 text-center">
-                            <i class="fas fa-flag-checkered mr-2"></i>Ближайшие соревнования
-                        </h2>
-                        <div id="upcomingEvents" class="grid md:grid-cols-2 gap-6">
-                            <!-- Заполняется через JS -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== ГАЛЕРЕЯ ==================== -->
-        <div id="page-gallery" class="page">
-            <section class="min-h-screen py-20 px-4">
-                <div class="max-w-6xl mx-auto">
-                    <h1 class="text-4xl font-black text-center mb-4">
-                        <i class="fas fa-images text-yellow-400 mr-3"></i>ФОТОГАЛЕРЕЯ
-                    </h1>
-                    <p class="text-center text-gray-200 mb-10">Моменты с тренировок и соревнований</p>
-
-                    <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <!-- Заполняется через JS -->
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== СТАТИСТИКА ==================== -->
-        <div id="page-stats" class="page">
-            <section class="min-h-screen py-20 px-4">
-                <div class="max-w-6xl mx-auto">
-                    <h1 class="text-4xl font-black text-center mb-4">
-                        <i class="fas fa-chart-line text-yellow-400 mr-3"></i>СТАТИСТИКА
-                    </h1>
-                    <p class="text-center text-gray-200 mb-10">Мои спортивные показатели</p>
-
-                    <!-- Общая статистика -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-                        <div class="glass rounded-2xl p-6 text-center">
-                            <i class="fas fa-skiing text-4xl text-blue-300 mb-3"></i>
-                            <div class="text-3xl font-black" id="stat-races">45</div>
-                            <div class="text-sm text-gray-300">Гонок</div>
-                        </div>
-                        <div class="glass rounded-2xl p-6 text-center">
-                            <i class="fas fa-medal text-4xl text-yellow-400 mb-3"></i>
-                            <div class="text-3xl font-black" id="stat-podiums">15</div>
-                            <div class="text-sm text-gray-300">Подиумов</div>
-                        </div>
-                        <div class="glass rounded-2xl p-6 text-center">
-                            <i class="fas fa-stopwatch text-4xl text-green-400 mb-3"></i>
-                            <div class="text-3xl font-black" id="stat-bestTime">52.34</div>
-                            <div class="text-sm text-gray-300">Лучшее время (сек)</div>
-                        </div>
-                        <div class="glass rounded-2xl p-6 text-center">
-                            <i class="fas fa-percentage text-4xl text-purple-400 mb-3"></i>
-                            <div class="text-3xl font-black" id="stat-winRate">33%</div>
-                            <div class="text-sm text-gray-300">Побед</div>
-                        </div>
-                    </div>
-
-                    <!-- Прогресс по дисциплинам -->
-                    <div class="glass rounded-2xl p-8 mb-8">
-                        <h3 class="text-xl font-bold mb-6">Прогресс по дисциплинам</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>Слалом</span>
-                                    <span id="progress-slalom">85%</span>
-                                </div>
-                                <div class="h-4 bg-white/20 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all" id="bar-slalom" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>Гигантский слалом</span>
-                                    <span id="progress-giant">78%</span>
-                                </div>
-                                <div class="h-4 bg-white/20 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full transition-all" id="bar-giant" style="width: 78%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>Супер-гигант</span>
-                                    <span id="progress-super">65%</span>
-                                </div>
-                                <div class="h-4 bg-white/20 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-yellow-500 to-orange-400 rounded-full transition-all" id="bar-super" style="width: 65%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span>Скоростной спуск</span>
-                                    <span id="progress-downhill">55%</span>
-                                </div>
-                                <div class="h-4 bg-white/20 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-red-500 to-rose-400 rounded-full transition-all" id="bar-downhill" style="width: 55%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Физические показатели -->
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="glass rounded-2xl p-6">
-                            <h3 class="text-xl font-bold mb-4">Физические данные</h3>
-                            <ul class="space-y-3">
-                                <li class="flex justify-between"><span>Рост:</span><span id="phys-height">168 см</span></li>
-                                <li class="flex justify-between"><span>Вес:</span><span id="phys-weight">58 кг</span></li>
-                                <li class="flex justify-between"><span>Размер ноги:</span><span id="phys-foot">41</span></li>
-                            </ul>
-                        </div>
-                        <div class="glass rounded-2xl p-6">
-                            <h3 class="text-xl font-bold mb-4">Экипировка</h3>
-                            <ul class="space-y-3">
-                                <li class="flex justify-between"><span>Лыжи:</span><span>Atomic Redster</span></li>
-                                <li class="flex justify-between"><span>Ботинки:</span><span>Lange RS</span></li>
-                                <li class="flex justify-between"><span>Шлем:</span><span>POC Skull</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== ПАРТНЁРЫ ==================== -->
-        <div id="page-partners" class="page">
-            <section class="min-h-screen py-20 px-4">
-                <div class="max-w-6xl mx-auto">
-                    <h1 class="text-4xl font-black text-center mb-4">
-                        <i class="fas fa-handshake text-yellow-400 mr-3"></i>НАШИ ПАРТНЁРЫ
-                    </h1>
-                    <p class="text-center text-gray-200 mb-10">Организации и бренды, поддерживающие наш спорт</p>
-
-                    <!-- Premium Partners -->
-                    <div class="mb-16">
-                        <h2 class="text-2xl font-bold mb-8 text-center text-yellow-400">ГЕНЕРАЛЬНЫЕ ПАРТНЁРЫ</h2>
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="glass rounded-2xl p-8 text-center hover:scale-105 transition-transform">
-                                <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                                    <span class="text-3xl font-bold">A</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">Atomic Sports</h3>
-                                <p class="text-gray-300 mb-4">Поставка профессионального оборудования</p>
-                                <div class="inline-block bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">
-                                    С 2022 года
-                                </div>
-                            </div>
-                            
-                            <div class="glass rounded-2xl p-8 text-center hover:scale-105 transition-transform">
-                                <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
-                                    <span class="text-3xl font-bold">RS</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">Red Star Bank</h3>
-                                <p class="text-gray-300 mb-4">Финансовая поддержка</p>
-                                <div class="inline-block bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">
-                                    С 2023 года
-                                </div>
-                            </div>
-                            
-                            <div class="glass rounded-2xl p-8 text-center hover:scale-105 transition-transform">
-                                <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center">
-                                    <span class="text-3xl font-bold">SP</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">SportPro Nutrition</h3>
-                                <p class="text-gray-300 mb-4">Спортивное питание и добавки</p>
-                                <div class="inline-block bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm">
-                                    С 2023 года
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Equipment Partners -->
-                    <div class="mb-16">
-                        <h2 class="text-2xl font-bold mb-8 text-center text-blue-300">ЭКИПИРОВКА И СНАРЯЖЕНИЕ</h2>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="glass rounded-xl p-6 text-center">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-lg flex items-center justify-center">
-                                    <span class="font-bold">L</span>
-                                </div>
-                                <span class="text-sm">Lange Boots</span>
-                            </div>
-                            
-                            <div class="glass rounded-xl p-6 text-center">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-lg flex items-center justify-center">
-                                    <span class="font-bold">P</span>
-                                </div>
-                                <span class="text-sm">POC Helmets</span>
-                            </div>
-                            
-                            <div class="glass rounded-xl p-6 text-center">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-lg flex items-center justify-center">
-                                    <span class="font-bold">S</span>
-                                </div>
-                                <span class="text-sm">Smith Goggles</span>
-                            </div>
-                            
-                            <div class="glass rounded-xl p-6 text-center">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-lg flex items-center justify-center">
-                                    <span class="font-bold">R</span>
-                                </div>
-                                <span class="text-sm">Rossignol Skis</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Become a Partner Section -->
-                    <div class="glass rounded-2xl p-8 text-center">
-                        <h2 class="text-2xl font-bold mb-4">СТАТЬ ПАРТНЁРОМ</h2>
-                        <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
-                            Мы всегда открыты для сотрудничества с компаниями, которые разделяют наши ценности 
-                            и хотят поддержать молодых талантов в горнолыжном спорте.
-                        </p>
-                        <button onclick="showPage('contacts')" class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-8 py-3 rounded-full transition inline-flex items-center">
-                            <i class="fas fa-envelope mr-2"></i>Связаться с нами
-                        </button>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== КОНТАКТЫ ==================== -->
-        <div id="page-contacts" class="page">
-            <section class="min-h-screen py-20 px-4">
-                <div class="max-w-4xl mx-auto">
-                    <h1 class="text-4xl font-black text-center mb-4">
-                        <i class="fas fa-envelope text-yellow-400 mr-3"></i>КОНТАКТЫ
-                    </h1>
-                    <p class="text-center text-gray-200 mb-10">Свяжитесь со мной или моим тренером</p>
-
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <!-- Контактная информация -->
-                        <div class="glass rounded-2xl p-8">
-                            <h3 class="text-xl font-bold mb-6">Контактная информация</h3>
-                            <ul class="space-y-4">
-                                <li class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-300">Email</div>
-                                        <div id="contact-email">kirill.ski@example.com</div>
-                                    </div>
-                                </li>
-                                <li class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-phone"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-300">Телефон (тренер)</div>
-                                        <div id="contact-phone">+7 (999) 123-45-67</div>
-                                    </div>
-                                </li>
-                                <li class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
-                                        <i class="fab fa-instagram"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-300">Instagram</div>
-                                        <div id="contact-instagram">@kirill_ski</div>
-                                    </div>
-                                </li>
-                                <li class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center">
-                                        <i class="fab fa-telegram"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-300">Telegram</div>
-                                        <div id="contact-telegram">@kirill_alpine</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Форма обратной связи -->
-                        <div class="glass rounded-2xl p-8">
-                            <h3 class="text-xl font-bold mb-6">Написать сообщение</h3>
-                            <form id="contactForm" class="space-y-4">
-                                <div>
-                                    <input type="text" placeholder="Ваше имя" required
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400">
-                                </div>
-                                <div>
-                                    <input type="email" placeholder="Email" required
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400">
-                                </div>
-                                <div>
-                                    <textarea placeholder="Сообщение" rows="4" required
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 resize-none"></textarea>
-                                </div>
-                                <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 rounded-lg transition">
-                                    <i class="fas fa-paper-plane mr-2"></i>Отправить
-                                </button>
-                            </form>
-                            <div id="contactSuccess" class="hidden mt-4 p-4 bg-green-500/30 rounded-lg text-center">
-                                <i class="fas fa-check-circle mr-2"></i>Сообщение отправлено!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== АДМИН ПАНЕЛЬ ==================== -->
-        <div id="page-admin" class="page">
-            <section class="min-h-screen py-20 px-4">
-                <div class="max-w-6xl mx-auto">
-                    <!-- Форма входа -->
-                    <div id="adminLogin" class="max-w-md mx-auto">
-                        <div class="glass rounded-2xl p-8">
-                            <h2 class="text-2xl font-bold text-center mb-6">
-                                <i class="fas fa-lock text-yellow-400 mr-2"></i>Вход в админ панель
-                            </h2>
-                            <form id="loginForm" class="space-y-4">
-                                <div>
-                                    <label class="block text-sm mb-2">Логин</label>
-                                    <input type="text" id="adminUsername" value="admin"
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400">
-                                </div>
-                                <div>
-                                    <label class="block text-sm mb-2">Пароль</label>
-                                    <input type="password" id="adminPassword" placeholder="Введите пароль"
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400">
-                                </div>
-                                <div id="loginError" class="hidden text-red-400 text-sm text-center">
-                                    Неверный логин или пароль
-                                </div>
-                                <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 rounded-lg transition">
-                                    <i class="fas fa-sign-in-alt mr-2"></i>Войти
-                                </button>
-                                <p class="text-center text-sm text-gray-300 mt-4">
-                                    Пароль по умолчанию: <code class="bg-white/20 px-2 py-1 rounded">kirill2024</code>
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Панель управления -->
-                    <div id="adminPanel" class="hidden">
-                        <div class="flex justify-between items-center mb-8">
-                            <h1 class="text-3xl font-bold">
-                                <i class="fas fa-cogs text-yellow-400 mr-3"></i>Панель управления
-                            </h1>
-                            <button onclick="adminLogout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Выйти
-                            </button>
-                        </div>
-
-                        <!-- Табы админки -->
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <button class="admin-tab active px-4 py-2 rounded-lg glass" data-tab="profile">
-                                <i class="fas fa-user mr-2"></i>Профиль
-                            </button>
-                            <button class="admin-tab px-4 py-2 rounded-lg glass" data-tab="achievements-admin">
-                                <i class="fas fa-trophy mr-2"></i>Достижения
-                            </button>
-                            <button class="admin-tab px-4 py-2 rounded-lg glass" data-tab="training-admin">
-                                <i class="fas fa-calendar mr-2"></i>Тренировки
-                            </button>
-                            <button class="admin-tab px-4 py-2 rounded-lg glass" data-tab="gallery-admin">
-                                <i class="fas fa-images mr-2"></i>Галерея
-                            </button>
-                            <button class="admin-tab px-4 py-2 rounded-lg glass" data-tab="partners-admin">
-                                <i class="fas fa-handshake mr-2"></i>Партнёры
-                            </button>
-                            <button class="admin-tab px-4 py-2 rounded-lg glass" data-tab="stats-admin">
-                                <i class="fas fa-chart-bar mr-2"></i>Статистика
-                            </button>
-                            <button class="admin-tab px-4 py-2 rounded-lg glass" data-tab="contacts-admin">
-                                <i class="fas fa-address-book mr-2"></i>Контакты
-                            </button>
-                        </div>
-
-                        <!-- Контент табов -->
-                        <div id="adminContent">
-                            <!-- Профиль -->
-                            <div class="admin-panel-tab active" id="tab-profile">
-                                <div class="glass rounded-2xl p-6">
-                                    <h3 class="text-xl font-bold mb-6">Редактировать профиль</h3>
-                                    <div class="grid md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label class="block text-sm mb-2">Возраст</label>
-                                            <input type="text" id="edit-age" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Город</label>
-                                            <input type="text" id="edit-city" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Школа/Клуб</label>
-                                            <input type="text" id="edit-school" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Тренер</label>
-                                            <input type="text" id="edit-coach" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Разряд</label>
-                                            <select id="edit-rank" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                                <option value="3 разряд">3 разряд</option>
-                                                <option value="2 разряд">2 разряд</option>
-                                                <option value="1 разряд">1 разряд</option>
-                                                <option value="КМС">КМС</option>
-                                                <option value="МС">МС</option>
-                                                <option value="МСМК">МСМК</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Стаж (лет)</label>
-                                            <input type="number" id="edit-experience" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <button onclick="saveProfile()" class="mt-6 bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-save mr-2"></i>Сохранить
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Достижения админ -->
-                            <div class="admin-panel-tab" id="tab-achievements-admin">
-                                <div class="glass rounded-2xl p-6 mb-6">
-                                    <h3 class="text-xl font-bold mb-6">Добавить достижение</h3>
-                                    <div class="grid md:grid-cols-4 gap-4">
-                                        <div>
-                                            <label class="block text-sm mb-2">Название</label>
-                                            <input type="text" id="ach-title" placeholder="Чемпионат..." class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Место</label>
-                                            <select id="ach-place" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                                <option value="1">🥇 1 место</option>
-                                                <option value="2">🥈 2 место</option>
-                                                <option value="3">🥉 3 место</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Дата</label>
-                                            <input type="date" id="ach-date" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Дисциплина</label>
-                                            <select id="ach-discipline" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                                <option value="Слалом">Слалом</option>
-                                                <option value="Гигант">Гигантский слалом</option>
-                                                <option value="Супер-гигант">Супер-гигант</option>
-                                                <option value="Скоростной спуск">Скоростной спуск</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <button onclick="addAchievement()" class="mt-4 bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-plus mr-2"></i>Добавить
-                                    </button>
-                                </div>
-                                <div class="glass rounded-2xl p-6">
-                                    <h3 class="text-xl font-bold mb-4">Список достижений</h3>
-                                    <div id="adminAchievementsList" class="space-y-2 max-h-96 overflow-y-auto">
-                                        <!-- Список -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Тренировки админ -->
-                            <div class="admin-panel-tab" id="tab-training-admin">
-                                <div class="glass rounded-2xl p-6 mb-6">
-                                    <h3 class="text-xl font-bold mb-6">Добавить тренировку</h3>
-                                    <div class="grid md:grid-cols-4 gap-4">
-                                        <div>
-                                            <label class="block text-sm mb-2">День недели</label>
-                                            <select id="train-day" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                                <option value="Понедельник">Понедельник</option>
-                                                <option value="Вторник">Вторник</option>
-                                                <option value="Среда">Среда</option>
-                                                <option value="Четверг">Четверг</option>
-                                                <option value="Пятница">Пятница</option>
-                                                <option value="Суббота">Суббота</option>
-                                                <option value="Воскресенье">Воскресенье</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Время</label>
-                                            <input type="time" id="train-time" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Тип</label>
-                                            <select id="train-type" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                                <option value="На склоне">На склоне</option>
-                                                <option value="ОФП">ОФП</option>
-                                                <option value="Зал">Тренажерный зал</option>
-                                                <option value="Восстановление">Восстановление</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Длительность (мин)</label>
-                                            <input type="number" id="train-duration" value="90" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <button onclick="addTraining()" class="mt-4 bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-plus mr-2"></i>Добавить
-                                    </button>
-                                </div>
-
-                                <div class="glass rounded-2xl p-6 mb-6">
-                                    <h3 class="text-xl font-bold mb-6">Добавить соревнование</h3>
-                                    <div class="grid md:grid-cols-3 gap-4">
-                                        <div>
-                                            <label class="block text-sm mb-2">Название</label>
-                                            <input type="text" id="event-title" placeholder="Название соревнований" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Дата</label>
-                                            <input type="date" id="event-date" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Место проведения</label>
-                                            <input type="text" id="event-location" placeholder="Город/Курорт" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <button onclick="addEvent()" class="mt-4 bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-flag mr-2"></i>Добавить соревнование
-                                    </button>
-                                </div>
-
-                                <div class="glass rounded-2xl p-6">
-                                    <h3 class="text-xl font-bold mb-4">Текущее расписание</h3>
-                                    <div id="adminTrainingList" class="space-y-2 max-h-64 overflow-y-auto">
-                                        <!-- Список -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Галерея админ -->
-                            <div class="admin-panel-tab" id="tab-gallery-admin">
-                                <div class="glass rounded-2xl p-6 mb-6">
-                                    <h3 class="text-xl font-bold mb-6">Добавить фото</h3>
-                                    <div class="grid md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-sm mb-2">URL изображения</label>
-                                            <input type="url" id="photo-url" placeholder="https://..." class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Описание</label>
-                                            <input type="text" id="photo-desc" placeholder="Описание фото" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <button onclick="addPhoto()" class="mt-4 bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-plus mr-2"></i>Добавить фото
-                                    </button>
-                                </div>
-                                <div class="glass rounded-2xl p-6">
-                                    <h3 class="text-xl font-bold mb-4">Управление галереей</h3>
-                                    <div id="adminGalleryList" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                        <!-- Список -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Партнёры админ -->
-                            <div class="admin-panel-tab" id="tab-partners-admin">
-                                <div class="glass rounded-2xl p-6 mb-6">
-                                    <h3 class="text-xl font-bold mb-6">Добавить партнёра</h3>
-                                    <div class="grid md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label class="block text-sm mb-2">Название компании</label>
-                                            <input type="text" id="partner-name" placeholder="Название компании" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Категория</label>
-                                            <select id="partner-category" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                                <option value="Генеральный партнёр">Генеральный партнёр</option>
-                                                <option value="Экипировка">Экипировка</option>
-                                                <option value="Питание">Питание</option>
-                                                <option value="Финансы">Финансы</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Описание сотрудничества</label>
-                                            <input type="text" id="partner-desc" placeholder="Описание" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Год начала партнёрства</label>
-                                            <input type="number" id="partner-year" placeholder="2023" min="2010" max="2030" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <button onclick="addPartner()" class="mt-4 bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-plus mr-2"></i>Добавить партнёра
-                                    </button>
-                                </div>
-                                
-                                <div class="glass rounded-2xl p-6">
-                                    <h3 class="text-xl font-bold mb-4">Список партнёров</h3>
-                                    <div id="adminPartnersList" class="space-y-3">
-                                        <!-- Список партнёров -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Статистика админ -->
-                            <div class="admin-panel-tab" id="tab-stats-admin">
-                                <div class="glass rounded-2xl p-6">
-                                    <h3 class="text-xl font-bold mb-6">Редактировать статистику</h3>
-                                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                        <div>
-                                            <label class="block text-sm mb-2">Количество гонок</label>
-                                            <input type="number" id="edit-races" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Подиумов</label>
-                                            <input type="number" id="edit-podiums" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Лучшее время (сек)</label>
-                                            <input type="number" step="0.01" id="edit-bestTime" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Процент побед</label>
-                                            <input type="number" id="edit-winRate" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <h4 class="text-lg font-bold mt-8 mb-4">Прогресс по дисциплинам (%)</h4>
-                                    <div class="grid md:grid-cols-4 gap-4">
-                                        <div>
-                                            <label class="block text-sm mb-2">Слалом</label>
-                                            <input type="number" id="edit-slalom" max="100" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Гигант</label>
-                                            <input type="number" id="edit-giant" max="100" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Супер-гигант</label>
-                                            <input type="number" id="edit-super" max="100" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Скоростной спуск</label>
-                                            <input type="number" id="edit-downhill" max="100" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <h4 class="text-lg font-bold mt-8 mb-4">Физические данные</h4>
-                                    <div class="grid md:grid-cols-3 gap-4">
-                                        <div>
-                                            <label class="block text-sm mb-2">Рост (см)</label>
-                                            <input type="number" id="edit-height" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Вес (кг)</label>
-                                            <input type="number" id="edit-weight" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Размер ноги</label>
-                                            <input type="number" id="edit-foot" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <button onclick="saveStats()" class="mt-6 bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-save mr-2"></i>Сохранить статистику
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Контакты админ -->
-                            <div class="admin-panel-tab" id="tab-contacts-admin">
-                                <div class="glass rounded-2xl p-6">
-                                    <h3 class="text-xl font-bold mb-6">Редактировать контакты</h3>
-                                    <div class="grid md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label class="block text-sm mb-2">Email</label>
-                                            <input type="email" id="edit-email" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Телефон</label>
-                                            <input type="tel" id="edit-phone" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Instagram</label>
-                                            <input type="text" id="edit-instagram" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm mb-2">Telegram</label>
-                                            <input type="text" id="edit-telegram" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2">
-                                        </div>
-                                    </div>
-                                    <button onclick="saveContacts()" class="mt-6 bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg transition">
-                                        <i class="fas fa-save mr-2"></i>Сохранить контакты
-                                    </button>
-                                </div>
-
-                                <div class="glass rounded-2xl p-6 mt-6">
-                                    <h3 class="text-xl font-bold mb-4">Полученные сообщения</h3>
-                                    <div id="messagesList" class="space-y-3 max-h-64 overflow-y-auto">
-                                        <p class="text-gray-400 text-center py-4">Сообщений пока нет</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black/30 py-8 px-4 mt-auto">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="flex justify-center gap-6 mb-4">
-                <a href="#" class="text-2xl hover:text-yellow-400 transition"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-2xl hover:text-yellow-400 transition"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="text-2xl hover:text-yellow-400 transition"><i class="fab fa-youtube"></i></a>
             </div>
-            <p class="text-gray-400">© 2024 Кирилл - Горнолыжный спорт. Все права защищены.</p>
+            
+            <div class="hero-visual">
+                <div class="mockup-container">
+                    <div class="mockup-browser">
+                        <div class="mockup-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="mockup-screen">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="Сайт на экране">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="gradient-text">Что я делаю</span>
+                </h2>
+                <p class="section-subtitle">Полный цикл разработки от идеи до запуска</p>
+            </div>
+            
+            <div class="services-grid">
+                <article class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Дизайн</h3>
+                    <p>Современный адаптивный дизайн с учетом вашего бренда и целевой аудитории</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> UI/UX проектирование</li>
+                        <li><i class="fas fa-check"></i> 3 варианта макета</li>
+                        <li><i class="fas fa-check"></i> Адаптация под все устройства</li>
+                    </ul>
+                </article>
+                
+                <article class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Разработка</h3>
+                    <p>Чистый, быстрый и SEO-оптимизированный код на современных технологиях</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> HTML5/CSS3/JS</li>
+                        <li><i class="fas fa-check"></i> Валидация W3C</li>
+                        <li><i class="fas fa-check"></i> Скорость загрузки <3 сек</li>
+                        <li><i class="fas fa-check"></i> Tilda</li>
+                    </ul>
+                </article>
+                
+                <article class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Запуск</h3>
+                    <p>Помощь с доменом, хостингом и запуском в продакшн</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Подключение хостинга</li>
+                        <li><i class="fas fa-check"></i> Настройка HTTPS</li>
+                        <li><i class="fas fa-check"></i> 1 месяц поддержки</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="gradient-text">Портфолио</span>
+                </h2>
+                <p class="section-subtitle">Реальные проекты и их результаты</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="landing">Лендинги</button>
+                <button class="filter-btn" data-filter="shop">Магазины</button>
+                <button class="filter-btn" data-filter="blog">Блоги</button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <article class="portfolio-item" data-category="landing" data-aos="zoom-in">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800" alt="Кофейня">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="#" class="portfolio-link" title="Просмотр">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="#" class="portfolio-link" title="Описание">
+                                    <i class="fas fa-info"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Сайт-визитка для кофейни</h3>
+                        <div class="portfolio-meta">
+                            <span><i class="fas fa-tag"></i> Лендинг</span>
+                            <span><i class="fas fa-calendar"></i> 2 дня</span>
+                        </div>
+                        <p>+35% заявок через форму после редизайна</p>
+                    </div>
+                </article>
+                
+                <article class="portfolio-item" data-category="blog" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800" alt="Фитнес">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="portfolio-link"><i class="fas fa-info"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Блог для фитнес-тренера</h3>
+                        <div class="portfolio-meta">
+                            <span><i class="fas fa-tag"></i> Блог</span>
+                            <span><i class="fas fa-calendar"></i> 3 дня</span>
+                        </div>
+                        <p>Интеграция с Telegram-ботом для записи</p>
+                    </div>
+                </article>
+                
+                <article class="portfolio-item" data-category="shop" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800" alt="Магазин">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="portfolio-link"><i class="fas fa-info"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Интернет-магазин handmade</h3>
+                        <div class="portfolio-meta">
+                            <span><i class="fas fa-tag"></i> Магазин</span>
+                            <span><i class="fas fa-calendar"></i> 5 дней</span>
+                        </div>
+                        <p>Подключение Яндекс.Кассы и доставки</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цены -->
+    <section id="prices" class="prices">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="gradient-text">Тарифы</span>
+                </h2>
+                <p class="section-subtitle">Фиксированные цены без скрытых платежей</p>
+            </div>
+            
+            <div class="prices-grid">
+                <article class="price-card featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="price-badge">Начинающий</div>
+                    <div class="price-header">
+                        <h3>Старт</h3>
+                        <div class="price">3 000₽</div>
+                        <p>Для быстрого старта</p>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> 1 страница (лендинг)</li>
+                        <li><i class="fas fa-check"></i> Адаптация под мобильные</li>
+                        <li><i class="fas fa-check"></i> Форма обратной связи</li>
+                        <li><i class="fas fa-check"></i> 3 дня в работе</li>
+                        <li><i class="fas fa-check"></i> 1 правка после сдачи</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block" onclick="openForm('Старт')">
+                        Выбрать тариф
+                    </button>
+                </article>
+                
+                <article class="price-card featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="price-badge">Популярный</div>
+                    <div class="price-header">
+                        <h3>Бизнес</h3>
+                        <div class="price">5 100₽</div>
+                        <p>Оптимальный выбор</p>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> До 5 страниц</li>
+                        <li><i class="fas fa-check"></i> Подключение оплаты (ЮKassa)</li>
+                        <li><i class="fas fa-check"></i> Telegram-бот + CRM</li>
+                        <li><i class="fas fa-check"></i> 5 дней в работе</li>
+                        <li><i class="fas fa-check"></i> Поддержка 1 месяц</li>
+                        <li><i class="fas fa-check"></i> SEO-оптимизация</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block" onclick="openForm('Бизнес')">
+                        Выбрать тариф
+                    </button>
+                </article>
+                
+                <article class="price-card featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="price-badge">Отличный</div>
+                    <div class="price-header">
+                        <h3>Индивидуальный</h3>
+                        <div class="price">от 10 000₽</div>
+                        <p>Максимум возможностей</p>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> От 10 страниц</li>
+                        <li><i class="fas fa-check"></i> Уникальный дизайн</li>
+                        <li><i class="fas fa-check"></i> Интеграция с 1С и API</li>
+                        <li><i class="fas fa-check"></i> 10 дней в работе</li>
+                        <li><i class="fas fa-check"></i> Поддержка 3 месяца</li>
+                        <li><i class="fas fa-check"></i> SSL-сертификат</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block" onclick="openForm('Индивидуальный')">
+                        Обсудить проект
+                    </button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="gradient-text">Отзывы</span>
+                </h2>
+                <p class="section-subtitle">Что говорят клиенты</p>
+            </div>
+            
+            <div class="reviews-slider">
+                <article class="review-card" data-aos="fade-right">
+                    <div class="review-header">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Клиент" class="review-avatar">
+                        <div>
+                            <h4>Анна Ковалева</h4>
+                            <p>Владелец кофейни</p>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        "Заказывала сайт-визитку. Всё сделали за 2 дня, даже быстрее обещанного. 
+                        После запуска заявки сразу пошли. Рекомендую!"
+                    </p>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заказа -->
+    <section id="order" class="order-form-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">Оставить заявку</h2>
+                <p class="section-subtitle">Отвечу в течение до 72 часов в Telegram</p>
+            </div>
+            
+            <form id="orderForm" class="order-form glass-card">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" placeholder="Как к вам обращаться?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telegram">Telegram</label>
+                        <input type="text" id="telegram" placeholder="@username или телефон" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Выбранный тариф</label>
+                    <input type="text" id="service" placeholder="Не выбран" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Опишите задачу</label>
+                    <textarea id="description" placeholder="Что продаете? Кто ваша ЦА? Есть примеры?" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        <span>Согласен с <a href="#" target="_blank">политикой конфиденциальности</a></span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block btn-glow">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Отправить заявку</span>
+                </button>
+                
+                <div id="formSuccess" class="form-success">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Заявка отправлена! Я отвечу в Telegram в течение до 72 часов.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <footer id="contacts" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>WebStart Studio</h3>
+                    <p>Создание сайтов для малого бизнеса и блогеров</p>
+                    <div class="footer-social">
+                        <a href="https://t.me/your_telegram" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://vk.com/your_vk" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="https://wa.me/your_whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-legal">
+                    <p>Работаю по договору оферты</p>
+                    <p>© 2025 WebStart Studio. Все права защищены.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Модальное окно для просмотра фото -->
-    <div id="photoModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
-        <button onclick="closePhotoModal()" class="absolute top-4 right-4 text-white text-3xl hover:text-yellow-400">
-            <i class="fas fa-times"></i>
-        </button>
-        <img id="modalPhoto" src="" alt="" class="max-w-full max-h-full rounded-lg">
-    </div>
-
-    <script>
-        // ==================== ДАННЫЕ ====================
-        let siteData = {
-            profile: {
-                age: '15 лет',
-                city: 'Москва',
-                school: 'СДЮСШОР №1',
-                coach: 'Иванов И.И.',
-                rank: 'КМС',
-                experience: '7 лет'
-            },
-            partners: [
-                { id: 1, name: 'Atomic Sports', category: 'Генеральный партнёр', desc: 'Поставка профессионального оборудования', year: '2022' },
-                { id: 2, name: 'Red Star Bank', category: 'Финансы', desc: 'Финансовая поддержка', year: '2023' },
-                { id: 3, name: 'SportPro Nutrition', category: 'Питание', desc: 'Спортивное питание и добавки', year: '2023' },
-                { id: 4, name: 'Lange Boots', category: 'Экипировка', desc: 'Профессиональные ботинки', year: '2023' },
-                { id: 5, name: 'POC Helmets', category: 'Экипировка', desc: 'Защитные шлемы', year: '2023' },
-                { id: 6, name: 'Smith Goggles', category: 'Экипировка', desc: 'Защитные очки', year: '2023' },
-                { id: 7, name: 'Rossignol Skis', category: 'Экипировка', desc: 'Горнолыжные палки и лыжи', year: '2023' }
-            ],
-            stats: {
-                races: 45,
-                podiums: 15,
-                bestTime: 52.34,
-                winRate: 33,
-                slalom: 85,
-                giant: 78,
-                super: 65,
-                downhill: 55,
-                height: 168,
-                weight: 58,
-                foot: 41
-            },
-            contacts: {
-                email: 'kirill.ski@example.com',
-                phone: '+7 (999) 123-45-67',
-                instagram: '@kirill_ski',
-                telegram: '@kirill_alpine'
-            },
-            achievements: [
-                { id: 1, title: 'Первенство России среди юниоров', place: 1, date: '2024-02-15', discipline: 'Слалом' },
-                { id: 2, title: 'Чемпионат Москвы', place: 1, date: '2024-01-20', discipline: 'Гигант' },
-                { id: 3, title: 'Кубок Красной Поляны', place: 2, date: '2023-12-10', discipline: 'Слалом' },
-                { id: 4, title: 'Первенство ЦФО', place: 1, date: '2023-11-25', discipline: 'Слалом' },
-                { id: 5, title: 'Международные соревнования FIS', place: 2, date: '2023-10-15', discipline: 'Гигант' },
-                { id: 6, title: 'Кубок Эльбруса', place: 3, date: '2023-09-20', discipline: 'Супер-гигант' },
-                { id: 7, title: 'Первенство Москвы', place: 1, date: '2023-03-10', discipline: 'Слалом' },
-                { id: 8, title: 'Открытый кубок Сочи', place: 2, date: '2023-02-28', discipline: 'Гигант' },
-            ],
-            training: [
-                { id: 1, day: 'Понедельник', time: '07:00', type: 'На склоне', duration: 120 },
-                { id: 2, day: 'Понедельник', time: '16:00', type: 'ОФП', duration: 60 },
-                { id: 3, day: 'Вторник', time: '07:00', type: 'На склоне', duration: 120 },
-                { id: 4, day: 'Среда', time: '15:00', type: 'Зал', duration: 90 },
-                { id: 5, day: 'Четверг', time: '07:00', type: 'На склоне', duration: 120 },
-                { id: 6, day: 'Пятница', time: '16:00', type: 'ОФП', duration: 60 },
-                { id: 7, day: 'Суббота', time: '08:00', type: 'На склоне', duration: 180 },
-                { id: 8, day: 'Воскресенье', time: '10:00', type: 'Восстановление', duration: 60 },
-            ],
-            events: [
-                { id: 1, title: 'Кубок России (этап)', date: '2024-03-15', location: 'Красная Поляна' },
-                { id: 2, title: 'Первенство России', date: '2024-04-01', location: 'Шерегеш' },
-            ],
-            gallery: [
-                { id: 1, url: 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=400', desc: 'На склоне' },
-                { id: 2, url: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=400', desc: 'Тренировка' },
-                { id: 3, url: 'https://images.unsplash.com/photo-1486218119243-13883505764c?w=400', desc: 'Соревнования' },
-                { id: 4, url: 'https://images.unsplash.com/photo-1565992441121-4367c2967103?w=400', desc: 'Победа!' },
-                { id: 5, url: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400', desc: 'Горы' },
-                { id: 6, url: 'https://images.unsplash.com/photo-1516575334481-f85287c2c82d?w=400', desc: 'Команда' },
-                { id: 7, url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400', desc: 'Вершина' },
-                { id: 8, url: 'https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=400', desc: 'Закат в горах' },
-            ],
-            messages: []
-        };
-
-        let isAdminLoggedIn = false;
-
-        // Загрузка данных из localStorage
-        function loadData() {
-            const saved = localStorage.getItem('kirillSkiData');
-            if (saved) {
-                siteData = JSON.parse(saved);
-            }
-            isAdminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-        }
-
-        // Сохранение данных в localStorage
-        function saveData() {
-            localStorage.setItem('kirillSkiData', JSON.stringify(siteData));
-        }
-
-        // ==================== НАВИГАЦИЯ ====================
-        function showPage(pageName) {
-            // Скрыть все страницы
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Показать нужную
-            const page = document.getElementById('page-' + pageName);
-            if (page) {
-                page.classList.add('active');
-                window.scrollTo(0, 0);
-            }
-            // Обновить навигацию
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.dataset.page === pageName) {
-                    link.classList.add('active');
-                }
-            });
-            // Закрыть мобильное меню
-            document.getElementById('mobileMenu').classList.add('hidden');
-            
-            // Обновить контент страницы
-            updatePageContent(pageName);
-        }
-
-        // ==================== ОБНОВЛЕНИЕ КОНТЕНТА ====================
-        function updatePageContent(pageName) {
-            updateProfile();
-            updateStats();
-            updateContacts();
-            
-            if (pageName === 'achievements') renderAchievements();
-            if (pageName === 'training') renderTraining();
-            if (pageName === 'gallery') renderGallery();
-            if (pageName === 'admin' && isAdminLoggedIn) {
-                showAdminPanel();
-                loadAdminForms();
-            }
-        }
-
-        function updateProfile() {
-            document.getElementById('info-age').textContent = siteData.profile.age;
-            document.getElementById('info-city').textContent = siteData.profile.city;
-            document.getElementById('info-school').textContent = siteData.profile.school;
-            document.getElementById('info-coach').textContent = siteData.profile.coach;
-            document.getElementById('info-rank').textContent = siteData.profile.rank;
-            document.getElementById('info-experience').textContent = siteData.profile.experience;
-            
-            // Главная страница
-            document.getElementById('homeStats-years').textContent = parseInt(siteData.profile.experience) || 7;
-            document.getElementById('homeStats-rank').textContent = siteData.profile.rank;
-            document.getElementById('homeStats-medals').textContent = siteData.achievements.length;
-            document.getElementById('homeStats-competitions').textContent = siteData.stats.races;
-        }
-
-        function updateStats() {
-            document.getElementById('stat-races').textContent = siteData.stats.races;
-            document.getElementById('stat-podiums').textContent = siteData.stats.podiums;
-            document.getElementById('stat-bestTime').textContent = siteData.stats.bestTime;
-            document.getElementById('stat-winRate').textContent = siteData.stats.winRate + '%';
-            
-            document.getElementById('progress-slalom').textContent = siteData.stats.slalom + '%';
-            document.getElementById('bar-slalom').style.width = siteData.stats.slalom + '%';
-            document.getElementById('progress-giant').textContent = siteData.stats.giant + '%';
-            document.getElementById('bar-giant').style.width = siteData.stats.giant + '%';
-            document.getElementById('progress-super').textContent = siteData.stats.super + '%';
-            document.getElementById('bar-super').style.width = siteData.stats.super + '%';
-            document.getElementById('progress-downhill').textContent = siteData.stats.downhill + '%';
-            document.getElementById('bar-downhill').style.width = siteData.stats.downhill + '%';
-            
-            document.getElementById('phys-height').textContent = siteData.stats.height + ' см';
-            document.getElementById('phys-weight').textContent = siteData.stats.weight + ' кг';
-            document.getElementById('phys-foot').textContent = siteData.stats.foot;
-        }
-
-        function updateContacts() {
-            document.getElementById('contact-email').textContent = siteData.contacts.email;
-            document.getElementById('contact-phone').textContent = siteData.contacts.phone;
-            document.getElementById('contact-instagram').textContent = siteData.contacts.instagram;
-            document.getElementById('contact-telegram').textContent = siteData.contacts.telegram;
-        }
-
-        // ==================== ДОСТИЖЕНИЯ ====================
-        function renderAchievements() {
-            const container = document.getElementById('achievementsList');
-            const adminContainer = document.getElementById('adminAchievementsList');
-            
-            let gold = 0, silver = 0, bronze = 0;
-            
-            const sorted = [...siteData.achievements].sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            let html = '';
-            let adminHtml = '';
-            
-            sorted.forEach(ach => {
-                if (ach.place === 1) gold++;
-                else if (ach.place === 2) silver++;
-                else if (ach.place === 3) bronze++;
-                
-                const medalClass = ach.place === 1 ? 'medal-gold' : ach.place === 2 ? 'medal-silver' : 'medal-bronze';
-                const medalIcon = ach.place === 1 ? '🥇' : ach.place === 2 ? '🥈' : '🥉';
-                const dateStr = new Date(ach.date).toLocaleDateString('ru-RU');
-                
-                html += `
-                    <div class="glass rounded-xl p-4 flex items-center gap-4">
-                        <div class="${medalClass} w-14 h-14 rounded-full flex items-center justify-center text-2xl flex-shrink-0">
-                            ${medalIcon}
-                        </div>
-                        <div class="flex-grow">
-                            <h3 class="font-bold">${ach.title}</h3>
-                            <p class="text-sm text-gray-300">${ach.discipline} • ${dateStr}</p>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-xl font-bold">${ach.place} место</span>
-                        </div>
-                    </div>
-                `;
-                
-                adminHtml += `
-                    <div class="flex items-center justify-between bg-white/10 rounded-lg p-3">
-                        <div>
-                            <span class="mr-2">${medalIcon}</span>
-                            <strong>${ach.title}</strong>
-                            <span class="text-sm text-gray-400 ml-2">${dateStr}</span>
-                        </div>
-                        <button onclick="deleteAchievement(${ach.id})" class="text-red-400 hover:text-red-300">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html || '<p class="text-center text-gray-400">Достижений пока нет</p>';
-            if (adminContainer) adminContainer.innerHTML = adminHtml || '<p class="text-gray-400">Нет достижений</p>';
-            
-            document.getElementById('goldCount').textContent = gold;
-            document.getElementById('silverCount').textContent = silver;
-            document.getElementById('bronzeCount').textContent = bronze;
-        }
-
-        function addAchievement() {
-            const title = document.getElementById('ach-title').value.trim();
-            const place = parseInt(document.getElementById('ach-place').value);
-            const date = document.getElementById('ach-date').value;
-            const discipline = document.getElementById('ach-discipline').value;
-            
-            if (!title || !date) {
-                alert('Заполните все поля!');
-                return;
-            }
-            
-            const newId = Math.max(...siteData.achievements.map(a => a.id), 0) + 1;
-            siteData.achievements.push({ id: newId, title, place, date, discipline });
-            saveData();
-            renderAchievements();
-            
-            document.getElementById('ach-title').value = '';
-            document.getElementById('ach-date').value = '';
-        }
-
-        function deleteAchievement(id) {
-            if (confirm('Удалить это достижение?')) {
-                siteData.achievements = siteData.achievements.filter(a => a.id !== id);
-                saveData();
-                renderAchievements();
-            }
-        }
-
-        // ==================== ТРЕНИРОВКИ ====================
-        function renderTraining() {
-            const container = document.getElementById('trainingSchedule');
-            const adminContainer = document.getElementById('adminTrainingList');
-            const eventsContainer = document.getElementById('upcomingEvents');
-            
-            const days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
-            const typeIcons = {
-                'На склоне': 'fa-skiing',
-                'ОФП': 'fa-running',
-                'Зал': 'fa-dumbbell',
-                'Восстановление': 'fa-spa'
-            };
-            
-            let html = '';
-            let adminHtml = '';
-            
-            days.forEach(day => {
-                const dayTrainings = siteData.training.filter(t => t.day === day);
-                if (dayTrainings.length > 0) {
-                    let trainingsHtml = dayTrainings.map(t => `
-                        <div class="flex items-center gap-3 py-2 border-b border-white/10 last:border-0">
-                            <i class="fas ${typeIcons[t.type] || 'fa-skiing'} text-yellow-400"></i>
-                            <div class="flex-grow">
-                                <div class="font-semibold">${t.type}</div>
-                                <div class="text-sm text-gray-300">${t.time} • ${t.duration} мин</div>
-                            </div>
-                        </div>
-                    `).join('');
-                    
-                    html += `
-                        <div class="glass rounded-xl p-5">
-                            <h3 class="font-bold text-lg mb-3 text-yellow-400">${day}</h3>
-                            ${trainingsHtml}
-                        </div>
-                    `;
-                }
-            });
-            
-            container.innerHTML = html || '<p class="text-center text-gray-400 col-span-3">Расписание не заполнено</p>';
-            
-            // Admin list
-            siteData.training.forEach(t => {
-                adminHtml += `
-                    <div class="flex items-center justify-between bg-white/10 rounded-lg p-3">
-                        <div>
-                            <strong>${t.day}</strong> - ${t.time} - ${t.type} (${t.duration} мин)
-                        </div>
-                        <button onclick="deleteTraining(${t.id})" class="text-red-400 hover:text-red-300">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-            });
-            if (adminContainer) adminContainer.innerHTML = adminHtml || '<p class="text-gray-400">Нет тренировок</p>';
-            
-            // Events
-            let eventsHtml = '';
-            siteData.events.forEach(e => {
-                const dateStr = new Date(e.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
-                eventsHtml += `
-                    <div class="glass rounded-xl p-5 flex items-center gap-4">
-                        <div class="w-16 h-16 bg-yellow-500 rounded-xl flex items-center justify-center text-black">
-                            <i class="fas fa-flag-checkered text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">${e.title}</h4>
-                            <p class="text-sm text-gray-300"><i class="fas fa-calendar mr-1"></i>${dateStr}</p>
-                            <p class="text-sm text-gray-300"><i class="fas fa-map-marker-alt mr-1"></i>${e.location}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            eventsContainer.innerHTML = eventsHtml || '<p class="text-center text-gray-400 col-span-2">Нет запланированных соревнований</p>';
-        }
-
-        function addTraining() {
-            const day = document.getElementById('train-day').value;
-            const time = document.getElementById('train-time').value;
-            const type = document.getElementById('train-type').value;
-            const duration = parseInt(document.getElementById('train-duration').value);
-            
-            if (!time) {
-                alert('Укажите время!');
-                return;
-            }
-            
-            const newId = Math.max(...siteData.training.map(t => t.id), 0) + 1;
-            siteData.training.push({ id: newId, day, time, type, duration });
-            saveData();
-            renderTraining();
-        }
-
-        function deleteTraining(id) {
-            siteData.training = siteData.training.filter(t => t.id !== id);
-            saveData();
-            renderTraining();
-        }
-
-        function addEvent() {
-            const title = document.getElementById('event-title').value.trim();
-            const date = document.getElementById('event-date').value;
-            const location = document.getElementById('event-location').value.trim();
-            
-            if (!title || !date || !location) {
-                alert('Заполните все поля!');
-                return;
-            }
-            
-            const newId = Math.max(...siteData.events.map(e => e.id), 0) + 1;
-            siteData.events.push({ id: newId, title, date, location });
-            saveData();
-            renderTraining();
-            
-            document.getElementById('event-title').value = '';
-            document.getElementById('event-date').value = '';
-            document.getElementById('event-location').value = '';
-        }
-
-        // ==================== ГАЛЕРЕЯ ====================
-        function renderGallery() {
-            const container = document.getElementById('galleryGrid');
-            const adminContainer = document.getElementById('adminGalleryList');
-            
-            let html = '';
-            let adminHtml = '';
-            
-            siteData.gallery.forEach(photo => {
-                html += `
-                    <div class="relative group cursor-pointer" onclick="openPhotoModal('${photo.url}')">
-                        <img src="${photo.url}" alt="${photo.desc}" class="w-full h-48 object-cover rounded-xl">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition rounded-xl flex items-center justify-center">
-                            <p class="text-white text-sm font-semibold">${photo.desc}</p>
-                        </div>
-                    </div>
-                `;
-                
-                adminHtml += `
-                    <div class="relative group">
-                        <img src="${photo.url}" alt="${photo.desc}" class="w-full h-32 object-cover rounded-lg">
-                        <button onclick="deletePhoto(${photo.id})" class="absolute top-2 right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                            <i class="fas fa-trash text-sm"></i>
-                        </button>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html || '<p class="text-center text-gray-400 col-span-4">Фотографий пока нет</p>';
-            if (adminContainer) adminContainer.innerHTML = adminHtml || '<p class="text-gray-400 col-span-4">Нет фото</p>';
-        }
-
-        function addPhoto() {
-            const url = document.getElementById('photo-url').value.trim();
-            const desc = document.getElementById('photo-desc').value.trim() || 'Фото';
-            
-            if (!url) {
-                alert('Укажите URL фото!');
-                return;
-            }
-            
-            const newId = Math.max(...siteData.gallery.map(p => p.id), 0) + 1;
-            siteData.gallery.push({ id: newId, url, desc });
-            saveData();
-            renderGallery();
-            
-            document.getElementById('photo-url').value = '';
-            document.getElementById('photo-desc').value = '';
-        }
-
-        function deletePhoto(id) {
-            if (confirm('Удалить это фото?')) {
-                siteData.gallery = siteData.gallery.filter(p => p.id !== id);
-                saveData();
-                renderGallery();
-            }
-        }
-
-        function openPhotoModal(url) {
-            document.getElementById('modalPhoto').src = url;
-            document.getElementById('photoModal').classList.remove('hidden');
-        }
-
-        function closePhotoModal() {
-            document.getElementById('photoModal').classList.add('hidden');
-        }
-
-        // ==================== АДМИН ПАНЕЛЬ ====================
-        function showAdminPanel() {
-            document.getElementById('adminLogin').classList.add('hidden');
-            document.getElementById('adminPanel').classList.remove('hidden');
-        }
-
-        function hideAdminPanel() {
-            document.getElementById('adminLogin').classList.remove('hidden');
-            document.getElementById('adminPanel').classList.add('hidden');
-        }
-
-        function adminLogout() {
-            isAdminLoggedIn = false;
-            localStorage.setItem('adminLoggedIn', 'false');
-            hideAdminPanel();
-        }
-
-        function loadAdminForms() {
-            // Profile
-            document.getElementById('edit-age').value = siteData.profile.age;
-            document.getElementById('edit-city').value = siteData.profile.city;
-            document.getElementById('edit-school').value = siteData.profile.school;
-            document.getElementById('edit-coach').value = siteData.profile.coach;
-            document.getElementById('edit-rank').value = siteData.profile.rank;
-            document.getElementById('edit-experience').value = parseInt(siteData.profile.experience) || 7;
-            
-            // Stats
-            document.getElementById('edit-races').value = siteData.stats.races;
-            document.getElementById('edit-podiums').value = siteData.stats.podiums;
-            document.getElementById('edit-bestTime').value = siteData.stats.bestTime;
-            document.getElementById('edit-winRate').value = siteData.stats.winRate;
-            document.getElementById('edit-slalom').value = siteData.stats.slalom;
-            document.getElementById('edit-giant').value = siteData.stats.giant;
-            document.getElementById('edit-super').value = siteData.stats.super;
-            document.getElementById('edit-downhill').value = siteData.stats.downhill;
-            document.getElementById('edit-height').value = siteData.stats.height;
-            document.getElementById('edit-weight').value = siteData.stats.weight;
-            document.getElementById('edit-foot').value = siteData.stats.foot;
-            
-            // Contacts
-            document.getElementById('edit-email').value = siteData.contacts.email;
-            document.getElementById('edit-phone').value = siteData.contacts.phone;
-            document.getElementById('edit-instagram').value = siteData.contacts.instagram;
-            document.getElementById('edit-telegram').value = siteData.contacts.telegram;
-            
-            // Render lists
-            renderAchievements();
-            renderTraining();
-            renderGallery();
-            renderMessages();
-            renderPartners();
-        }
-
-        function saveProfile() {
-            siteData.profile.age = document.getElementById('edit-age').value;
-            siteData.profile.city = document.getElementById('edit-city').value;
-            siteData.profile.school = document.getElementById('edit-school').value;
-            siteData.profile.coach = document.getElementById('edit-coach').value;
-            siteData.profile.rank = document.getElementById('edit-rank').value;
-            siteData.profile.experience = document.getElementById('edit-experience').value + ' лет';
-            
-            saveData();
-            updateProfile();
-            alert('Профиль сохранён!');
-        }
-
-        function saveStats() {
-            siteData.stats.races = parseInt(document.getElementById('edit-races').value);
-            siteData.stats.podiums = parseInt(document.getElementById('edit-podiums').value);
-            siteData.stats.bestTime = parseFloat(document.getElementById('edit-bestTime').value);
-            siteData.stats.winRate = parseInt(document.getElementById('edit-winRate').value);
-            siteData.stats.slalom = parseInt(document.getElementById('edit-slalom').value);
-            siteData.stats.giant = parseInt(document.getElementById('edit-giant').value);
-            siteData.stats.super = parseInt(document.getElementById('edit-super').value);
-            siteData.stats.downhill = parseInt(document.getElementById('edit-downhill').value);
-            siteData.stats.height = parseInt(document.getElementById('edit-height').value);
-            siteData.stats.weight = parseInt(document.getElementById('edit-weight').value);
-            siteData.stats.foot = parseInt(document.getElementById('edit-foot').value);
-            
-            saveData();
-            updateStats();
-            alert('Статистика сохранена!');
-        }
-
-        function saveContacts() {
-            siteData.contacts.email = document.getElementById('edit-email').value;
-            siteData.contacts.phone = document.getElementById('edit-phone').value;
-            siteData.contacts.instagram = document.getElementById('edit-instagram').value;
-            siteData.contacts.telegram = document.getElementById('edit-telegram').value;
-            
-            saveData();
-            updateContacts();
-            alert('Контакты сохранены!');
-        }
-
-        function renderMessages() {
-            const container = document.getElementById('messagesList');
-            if (siteData.messages.length === 0) {
-                container.innerHTML = '<p class="text-gray-400 text-center py-4">Сообщений пока нет</p>';
-                return;
-            }
-            
-            let html = '';
-            siteData.messages.forEach((msg, index) => {
-                html += `
-                    <div class="bg-white/10 rounded-lg p-3">
-                        <div class="flex justify-between items-start mb-2">
-                            <strong>${msg.name}</strong>
-                            <button onclick="deleteMessage(${index})" class="text-red-400 text-sm"><i class="fas fa-trash"></i></button>
-                        </div>
-                        <p class="text-sm text-gray-300 mb-1">${msg.email}</p>
-                        <p class="text-sm">${msg.message}</p>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        function deleteMessage(index) {
-            siteData.messages.splice(index, 1);
-            saveData();
-            renderMessages();
-        }
-
-        // ==================== ПАРТНЁРЫ ====================
-        function renderPartners() {
-            const adminContainer = document.getElementById('adminPartnersList');
-            
-            let adminHtml = '';
-            
-            siteData.partners.forEach(partner => {
-                adminHtml += `
-                    <div class="flex items-center justify-between bg-white/10 rounded-lg p-3">
-                        <div>
-                            <strong>${partner.name}</strong> - ${partner.category} (${partner.year})
-                            <p class="text-sm text-gray-400">${partner.desc}</p>
-                        </div>
-                        <button onclick="deletePartner(${partner.id})" class="text-red-400 hover:text-red-300">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-            });
-            
-            if (adminContainer) adminContainer.innerHTML = adminHtml || '<p class="text-gray-400">Нет партнёров</p>';
-        }
-
-        function addPartner() {
-            const name = document.getElementById('partner-name').value.trim();
-            const category = document.getElementById('partner-category').value;
-            const desc = document.getElementById('partner-desc').value.trim();
-            const year = document.getElementById('partner-year').value;
-            
-            if (!name || !desc || !year) {
-                alert('Заполните все поля!');
-                return;
-            }
-            
-            const newId = Math.max(...siteData.partners.map(p => p.id), 0) + 1;
-            siteData.partners.push({ id: newId, name, category, desc, year });
-            saveData();
-            renderPartners();
-            
-            // Clear form fields
-            document.getElementById('partner-name').value = '';
-            document.getElementById('partner-desc').value = '';
-            document.getElementById('partner-year').value = '';
-        }
-
-        function deletePartner(id) {
-            if (confirm('Удалить этого партнёра?')) {
-                siteData.partners = siteData.partners.filter(p => p.id !== id);
-                saveData();
-                renderPartners();
-            }
-        }
-
-        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            
-            // Навигация
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    showPage(this.dataset.page);
-                });
-            });
-            
-            // Мобильное меню
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.toggle('hidden');
-            });
-            
-            // Табы админки
-            document.querySelectorAll('.admin-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active', 'bg-yellow-500/50'));
-                    this.classList.add('active', 'bg-yellow-500/50');
-                    
-                    document.querySelectorAll('.admin-panel-tab').forEach(p => p.classList.remove('active'));
-                    document.getElementById('tab-' + this.dataset.tab).classList.add('active');
-                });
-            });
-            
-            // Форма входа в админку
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const username = document.getElementById('adminUsername').value;
-                const password = document.getElementById('adminPassword').value;
-                
-                if (username === 'admin' && password === 'kirill2024') {
-                    isAdminLoggedIn = true;
-                    localStorage.setItem('adminLoggedIn', 'true');
-                    showAdminPanel();
-                    loadAdminForms();
-                    document.getElementById('loginError').classList.add('hidden');
-                } else {
-                    document.getElementById('loginError').classList.remove('hidden');
-                }
-            });
-            
-            // Форма обратной связи
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                const inputs = this.querySelectorAll('input, textarea');
-                
-                siteData.messages.push({
-                    name: inputs[0].value,
-                    email: inputs[1].value,
-                    message: inputs[2].value,
-                    date: new Date().toISOString()
-                });
-                saveData();
-                
-                this.reset();
-                document.getElementById('contactSuccess').classList.remove('hidden');
-                setTimeout(() => {
-                    document.getElementById('contactSuccess').classList.add('hidden');
-                }, 3000);
-            });
-            
-            // Закрытие модалки по клику вне
-            document.getElementById('photoModal').addEventListener('click', function(e) {
-                if (e.target === this) closePhotoModal();
-            });
-            
-            // Проверка авторизации админа
-            if (isAdminLoggedIn) {
-                showAdminPanel();
-            }
-            
-            // Начальное обновление
-            showPage('home');
-        });
-
-        // Стили для активных табов
-        document.head.insertAdjacentHTML('beforeend', `
-            <style>
-                .admin-panel-tab { display: none; }
-                .admin-panel-tab.active { display: block; animation: fadeIn 0.3s ease; }
-                .admin-tab.active { background: rgba(234, 179, 8, 0.5) !important; }
-            </style>
-        `);
-    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
